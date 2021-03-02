@@ -11,7 +11,7 @@ namespace PayCompute.Services
         Task CreateAsync(Employee newEmployee);
         Employee GetById(int id);
         Task UpdateAsync(Employee employee);
-        Task UpdateAsync(int id);
+        Task UpdateAsync(int employeeId);
         Task Delete(int employeeId);
         decimal UnionFees(int id);
         decimal StudentLoanRepaymentAmount(int id, decimal totalAmount);
