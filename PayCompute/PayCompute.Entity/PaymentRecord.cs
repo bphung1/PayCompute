@@ -54,14 +54,16 @@ namespace PayCompute.Entity
 
         [Column(TypeName = "money")]
         public Nullable<decimal> SLC { get; set; } //Student Loan Company. Does not apply to all employees
-
+        
         [Column(TypeName = "money")]
         public decimal TotalEarnings { get; set; }
 
         [Column(TypeName = "money")]
         public decimal TotalDeduction { get; set; }
 
-        [Column(TypeName = "money")]
+        [Column(TypeName ="money")]
         public decimal NeyPayment { get; set; }
+
+
     }
 }
