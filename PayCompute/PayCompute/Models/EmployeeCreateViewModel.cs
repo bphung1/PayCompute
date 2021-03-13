@@ -12,8 +12,8 @@ namespace PayCompute.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Employee Number is required"),
-            RegularExpression(@"^[A-Z]{3,3}[0-9]$")]
+        [Required(ErrorMessage = "Employee Number is required"),
+            RegularExpression(@"^[A-Z]{3,3}[0-9]{3}$")]
         public string EmployeeNo { get; set; }
 
         [Required(ErrorMessage ="First name is required"), StringLength(50, MinimumLength =2)]
@@ -42,7 +42,7 @@ namespace PayCompute.Models
         public DateTime DOB { get; set; }
 
         [DataType(DataType.Date), Display(Name = "Date joined")]
-        public DateTime DateJoined { get; set; } = DateTime.UtcNow;
+        public DateTime DateJoined { get; set; } = DateTime.Now;
 
         public string Phone { get; set; }
 
