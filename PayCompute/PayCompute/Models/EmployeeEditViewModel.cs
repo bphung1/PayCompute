@@ -13,7 +13,7 @@ namespace PayCompute.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Employee Number is required"),
-            RegularExpression(@"^[A-Z]{3,3}[0-9]$")]
+            RegularExpression(@"^[A-Z]{3,3}[0-9]{3}$")]
         public string EmployeeNo { get; set; }
 
         [Required(ErrorMessage = "First name is required"), StringLength(50, MinimumLength = 2)]
