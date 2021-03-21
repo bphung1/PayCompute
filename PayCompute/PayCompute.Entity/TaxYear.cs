@@ -6,7 +6,7 @@ namespace PayCompute.Entity
 {
     public class TaxYear
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string YearOfTax { get; set; }
     }
 }
