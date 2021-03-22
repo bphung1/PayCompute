@@ -1,69 +1,72 @@
-﻿using System;
+﻿using PayCompute.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace PayCompute.Entity
+namespace PayCompute.Models
 {
-    public class PaymentRecord
+    public class PaymentRecordDetailViewModel
     {
         public int Id { get; set; }
-
-        [ForeignKey("Employee")]
         public int EmployeeID { get; set; }
         public Employee Employee { get; set; }
 
-        [MaxLength(100)]
+        [Display(Name = "Employee")]
         public string FullName { get; set; }
         public string SSN { get; set; } //social security No.
+
+        [DataType(DataType.Date), Display(Name = "Pay Date")]
         public DateTime PayDate { get; set; }
+
+        [Display(Name = "Pay Month")]
         public string PayMonth { get; set; }
 
-        [ForeignKey("TaxYear")]
+        [Display(Name = "Tax Year")]
         public int TaxYearId { get; set; }
+
+        public string Year { get; set; }
+
         public TaxYear TaxYear { get; set; }
+
+        [Display(Name = "Tax Code")]
         public string TaxCode { get; set; }
 
-        [Column(TypeName = "money")]
+        [Display(Name = "Hourly Rate")]
         public decimal HourlyRate { get; set; }
 
-        [Column(TypeName = "decimal(18, 2")]
+        [Display(Name = "Hours Worked")]
         public decimal HoursWorked { get; set; }
 
-        [Column(TypeName = "decimal(18, 2")]
+        [Display(Name = "Contractual Hours")]
         public decimal ContractualHours { get; set; }
 
-        [Column(TypeName = "decimal(18, 2")]
+        [Display(Name = "Overtime Hours")]
         public decimal OvertimeHours { get; set; }
 
-        [Column(TypeName = "money")]
+        [Display(Name = "Overtime Rate")]
+        public decimal OvertimeRate{ get; set; }
+
+        [Display(Name = "Contractual Earnings")]
         public decimal ContractualEarnings { get; set; }
 
-        [Column(TypeName = "money")]
+        [Display(Name = "Overtime Earnings")]
         public decimal OvertimeEarnings { get; set; }
-
-        [Column(TypeName = "money")]
         public decimal Tax { get; set; }
+        public decimal FICA { get; set; } //Social Security
 
-        [Column(TypeName = "money")]
-        public decimal FICA { get; set; } //SocialSecurity
-
-        [Column(TypeName = "money")]
+        [Display(Name = "Union Fee")]
         public decimal? UnionFee { get; set; } //optional
-
-        [Column(TypeName = "money")]
         public Nullable<decimal> SLC { get; set; } //Student Loan Company. Does not apply to all employees
-        
-        [Column(TypeName = "money")]
+
+        [Display(Name = "Total Earnings")]
         public decimal TotalEarnings { get; set; }
 
-        [Column(TypeName = "money")]
+        [Display(Name = "Total Deductions")]
         public decimal TotalDeduction { get; set; }
 
-        [Column(TypeName ="money")]
+        [Display(Name = "Net Payment")]
         public decimal NetPayment { get; set; }
-
-
     }
 }

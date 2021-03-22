@@ -49,7 +49,7 @@ namespace PayCompute.Controllers
                 Year = _payComputationService.GetTaxYearById(pay.TaxYearId).YearOfTax,
                 TotalEarnings = pay.TotalEarnings,
                 TotalDeduction = pay.TotalDeduction,
-                NetPayment = pay.NeyPayment,
+                NetPayment = pay.NetPayment,
                 Employee = pay.Employee
             });
             return View(payRecords);
@@ -92,7 +92,7 @@ namespace PayCompute.Controllers
                     SLC = studentLoan = _employeeService.StudentLoanRepaymentAmount(model.EmployeeID, totalEarnings),
                     FICA = fica = _federalInsuranceContributionService.FederalInsuranceContribution(totalEarnings),
                     TotalDeduction = totalDeduction = _payComputationService.TotalDeduction(tax, fica, studentLoan, unionFee),
-                    NeyPayment = _payComputationService.NetPayment(totalEarnings, totalDeduction)
+                    NetPayment = _payComputationService.NetPayment(totalEarnings, totalDeduction)
                 };
                 await _payComputationService.CreateAsync(payRecord);
                 return RedirectToAction(nameof(Index));
@@ -100,6 +100,65 @@ namespace PayCompute.Controllers
             ViewBag.employees = _employeeService.GetAllEmployeesForPayroll();
             ViewBag.taxYears = _payComputationService.GetAllTaxYear();
             return View();
+        }
+
+        public IActionResult Detail(int id)
+        {
+            var paymentRecord = _payComputationService.GetById(id);
+            if (paymentRecord == null)
+            {
+                return NotFound();
+            }
+
+            var model = createModel(paymentRecord);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Payslip(int id)
+        {
+            var paymentRecord = _payComputationService.GetById(id);
+            if (paymentRecord == null)
+            {
+                return NotFound();
+            }
+
+            var model = createModel(paymentRecord);
+            
+            return View(model);
+        }
+
+        private PaymentRecordDetailViewModel createModel(PaymentRecord paymentRecord)
+        {
+            return new PaymentRecordDetailViewModel()
+            {
+                Id = paymentRecord.Id,
+                EmployeeID = paymentRecord.EmployeeID,
+                FullName = paymentRecord.FullName,
+                SSN = paymentRecord.SSN,
+                PayDate = paymentRecord.PayDate,
+                PayMonth = paymentRecord.PayMonth,
+                TaxYearId = paymentRecord.TaxYearId,
+                Year = _payComputationService.GetTaxYearById(paymentRecord.TaxYearId).YearOfTax,
+                TaxCode = paymentRecord.TaxCode,
+                HourlyRate = paymentRecord.HourlyRate,
+                HoursWorked = paymentRecord.HoursWorked,
+                ContractualHours = paymentRecord.ContractualHours,
+                OvertimeHours = paymentRecord.OvertimeHours,
+                OvertimeRate = _payComputationService.OvertimeRate(paymentRecord.HourlyRate),
+                ContractualEarnings = paymentRecord.ContractualEarnings,
+                OvertimeEarnings = paymentRecord.OvertimeEarnings,
+                Tax = paymentRecord.Tax,
+                FICA = paymentRecord.FICA,
+                UnionFee = paymentRecord.UnionFee,
+                SLC = paymentRecord.SLC,
+                TotalEarnings = paymentRecord.TotalEarnings,
+                TotalDeduction = paymentRecord.TotalDeduction,
+                Employee = paymentRecord.Employee,
+                TaxYear = paymentRecord.TaxYear,
+                NetPayment = paymentRecord.NetPayment
+            };
         }
     }
 }

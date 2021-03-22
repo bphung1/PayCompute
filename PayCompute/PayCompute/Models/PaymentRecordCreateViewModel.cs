@@ -20,7 +20,7 @@ namespace PayCompute.Models
         [Display(Name = "Pay Month")]
         public string PayMonth { get; set; } = DateTime.Today.Month.ToString();
 
-        [Display(Name ="TaxYear")]
+        [Display(Name ="Tax Year")]
         public int TaxYearId { get; set; }
 
         public TaxYear TaxYear { get; set; }
@@ -44,6 +44,6 @@ namespace PayCompute.Models
         public Nullable<decimal> SLC { get; set; } //Student Loan Company. Does not apply to all employees
         public decimal TotalEarnings { get; set; }
         public decimal TotalDeduction { get; set; }
-        public decimal NeyPayment { get; set; }
+        public decimal NetPayment { get; set; }
     }
 }
