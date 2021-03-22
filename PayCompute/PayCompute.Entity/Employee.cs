@@ -31,7 +31,7 @@ namespace PayCompute.Entity
         public string Email { get; set; }
 
         [Required, MaxLength(50)]
-        public string NationalInsuranceNo { get; set; }
+        public string SocialSecurity { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public StudentLoan StudentLoan { get; set; }
         public UnionMember UnionMember { get; set; }

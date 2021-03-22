@@ -16,7 +16,7 @@ namespace PayCompute.Entity
 
         [MaxLength(100)]
         public string FullName { get; set; }
-        public string NiNo { get; set; } //National Insurance No.
+        public string SSN { get; set; } //social security No.
         public DateTime PayDate { get; set; }
         public string PayMonth { get; set; }
 
@@ -47,7 +47,7 @@ namespace PayCompute.Entity
         public decimal Tax { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal NIC { get; set; } //National Insurance Contribution
+        public decimal SocialSecurity { get; set; } //National Insurance Contribution
 
         [Column(TypeName = "money")]
         public decimal? UnionFee { get; set; } //optional

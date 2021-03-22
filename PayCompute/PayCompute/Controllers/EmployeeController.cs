@@ -62,7 +62,7 @@ namespace PayCompute.Controllers
                     Email = model.Email,
                     DOB = model.DOB,
                     DateJoined = model.DateJoined,
-                    NationalInsuranceNo = model.NationalInsuranceNo,
+                    SocialSecurity = model.SocialSecurityNo,
                     PaymentMethod = model.PaymentMethod,
                     StudentLoan = model.StudentLoan,
                     UnionMember = model.UnionMember,
@@ -104,7 +104,7 @@ namespace PayCompute.Controllers
                 Email = employee.Email,
                 DOB = employee.DOB,
                 DateJoined = employee.DateJoined,
-                NationalInsuranceNo = employee.NationalInsuranceNo,
+                SocialSecurityNo = employee.SocialSecurity,
                 PaymentMethod = employee.PaymentMethod,
                 StudentLoan = employee.StudentLoan,
                 UnionMember = employee.UnionMember,
@@ -134,7 +134,7 @@ namespace PayCompute.Controllers
                 employee.FirstName = model.FirstName;
                 employee.LastName = model.LastName;
                 employee.MiddleName = model.MiddleName;
-                employee.NationalInsuranceNo = model.NationalInsuranceNo;
+                employee.SocialSecurity = model.SocialSecurityNo;
                 employee.Gender = model.Gender;
                 employee.Email = model.Email;
                 employee.DOB = model.DOB;
@@ -175,7 +175,7 @@ namespace PayCompute.Controllers
                 DOB = employee.DOB,
                 DateJoined = employee.DateJoined,
                 Designation = employee.Designation,
-                NationalInsuranceNo = employee.NationalInsuranceNo,
+                SocialSecurityNo = employee.SocialSecurity,
                 Phone = employee.Phone,
                 Email = employee.Email,
                 PaymentMethod = employee.PaymentMethod,

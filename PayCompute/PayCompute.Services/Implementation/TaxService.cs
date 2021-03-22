@@ -6,40 +6,39 @@ namespace PayCompute.Services.Implementation
 {
     public class TaxService : ITaxService
     {
-        private decimal tax;
         public decimal TaxAmount(decimal totalAmount)
         {
             //Illinois tax bracket
             if (totalAmount <= 9950 && totalAmount >= 0)
             {
-                tax = calculateTax(.10m, totalAmount);
+                return calculateTax(.10m, totalAmount);
             }
             else if (totalAmount > 9950 && totalAmount <= 40525)
             { 
-                tax = calculateTax(.12m, totalAmount);
+                return calculateTax(.12m, totalAmount);
             }
             else if (totalAmount > 40525 && totalAmount <= 86375)
             {
-                tax = calculateTax(.22m, totalAmount);
+                return calculateTax(.22m, totalAmount);
             }
             else if (totalAmount > 86375 && totalAmount <= 164925)
             {
-                tax = calculateTax(.24m, totalAmount);
+                return calculateTax(.24m, totalAmount);
             }
             else if (totalAmount > 164925 && totalAmount <= 209425)
             {
-                tax = calculateTax(.32m, totalAmount);
+                return calculateTax(.32m, totalAmount);
             }
             else if (totalAmount > 209425 && totalAmount <= 523600)
             {
-                tax = calculateTax(.35m, totalAmount);
+                return calculateTax(.35m, totalAmount);
             }
             else if (totalAmount > 523600)
             {
-                tax = calculateTax(.37m, totalAmount);
+                return calculateTax(.37m, totalAmount);
             }
 
-            return tax;
+            return 0;
         }
 
         private decimal calculateTax(decimal taxRate, decimal totalAmount)

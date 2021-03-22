@@ -47,9 +47,9 @@ namespace PayCompute.Models
         public string Email { get; set; }
 
         //for US SSN format 000-00-0000 use @"^\d{3}-\d{2}-\d{4}$"
-        [Required, StringLength(50), Display(Name = "NI No.")]
-        [RegularExpression(@"^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D\s]$")]
-        public string NationalInsuranceNo { get; set; }
+        [Required, StringLength(50), Display(Name = "Social Security No.")]
+        [RegularExpression(@"^\d{3}-\d{2}-\d{4}$")]
+        public string SocialSecurityNo { get; set; }
 
         [Display(Name = "Payment Method")]
         public PaymentMethod PaymentMethod { get; set; }

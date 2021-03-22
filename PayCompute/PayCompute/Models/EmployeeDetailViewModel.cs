@@ -19,7 +19,7 @@ namespace PayCompute.Models
         public string Phone { get; set; }
         public string Designation { get; set; }
         public string Email { get; set; }
-        public string NationalInsuranceNo { get; set; }
+        public string SocialSecurityNo { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public StudentLoan StudentLoan { get; set; }
         public UnionMember UnionMember { get; set; }
