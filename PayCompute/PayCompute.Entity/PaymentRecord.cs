@@ -47,7 +47,7 @@ namespace PayCompute.Entity
         public decimal Tax { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal SocialSecurity { get; set; } //National Insurance Contribution
+        public decimal FICA { get; set; } //SocialSecurity
 
         [Column(TypeName = "money")]
         public decimal? UnionFee { get; set; } //optional

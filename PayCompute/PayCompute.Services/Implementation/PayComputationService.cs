@@ -74,10 +74,13 @@ namespace PayCompute.Services.Implementation
         public decimal OvertimeRate(decimal hourlyRate)
             => hourlyRate * 1.5m;
 
-        public decimal TotalDeduction(decimal tax, decimal nic, decimal studentLoanRepayment, decimal unionFees)
-            => tax + nic + studentLoanRepayment + unionFees;
+        public decimal TotalDeduction(decimal tax, decimal fica, decimal studentLoanRepayment, decimal unionFees)
+            => tax + fica + studentLoanRepayment + unionFees;
 
         public decimal TotalEarnings(decimal overtimeEarnings, decimal contractualEarnings)
             => overtimeEarnings + contractualEarnings;
+
+        public TaxYear GetTaxYearById(int id)
+            => _context.TaxYears.Where(year => year.Id == id).FirstOrDefault();
     }
 }

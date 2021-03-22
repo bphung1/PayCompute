@@ -11,6 +11,7 @@ namespace PayCompute.Services
     {
         Task CreateAsync(PaymentRecord paymentRecord);
         PaymentRecord GetById(int id);
+        TaxYear GetTaxYearById(int id);
         IEnumerable<PaymentRecord> GetAll();
         IEnumerable<SelectListItem> GetAllTaxYear();
         decimal OvertimeHours(decimal hoursWorked, decimal contractualHours);
@@ -18,7 +19,7 @@ namespace PayCompute.Services
         decimal OvertimeRate(decimal hourlyRate);
         decimal OvertimeEarnings(decimal overtimeRate, decimal overtimeHours);
         decimal TotalEarnings(decimal overtimeEarnings, decimal contractualEarnings);
-        decimal TotalDeduction(decimal tax, decimal nic, decimal studentLoanRepayment, decimal unionFees);
+        decimal TotalDeduction(decimal tax, decimal fica, decimal studentLoanRepayment, decimal unionFees);
         decimal NetPayment(decimal totalEarnings, decimal totalDeduction);
     }
 }
