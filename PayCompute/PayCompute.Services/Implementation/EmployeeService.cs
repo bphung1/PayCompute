@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PayCompute.Entity;
 using PayCompute.Persistence;
 using System;
@@ -34,7 +35,7 @@ namespace PayCompute.Services.Implementation
         }
 
         public IEnumerable<Employee> GetAll() =>
-            _context.Employees;
+            _context.Employees.AsNoTracking().OrderBy(emp => emp.FullName);
 
         public async Task UpdateAsync(Employee employee)
         {
