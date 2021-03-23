@@ -38,7 +38,7 @@ namespace PayCompute.Services.Implementation
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<PaymentRecord> GetAll() => _context.PaymentRecords.OrderBy(p => p.EmployeeID);
+        public IEnumerable<PaymentRecord> GetAll() => _context.PaymentRecords.OrderBy(p => p.EmployeeID).ToList();
 
         public IEnumerable<SelectListItem> GetAllTaxYear()
         {
