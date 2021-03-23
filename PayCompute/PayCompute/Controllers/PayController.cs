@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PayCompute.Entity;
 using PayCompute.Models;
 using PayCompute.Services;
@@ -10,6 +11,17 @@ using System.Threading.Tasks;
 
 namespace PayCompute.Controllers
 {
+    [Authorize(Roles ="Admin, Manager")]
+
+    /*  
+        this is different to the top. 
+        the top means that user has to be either admin OR manager
+        the below means that the user has to be both admin AND manager.
+
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Manager")]
+    */
+
     public class PayController : Controller
     {
         private readonly IPayComputationService _payComputationService;
@@ -57,6 +69,7 @@ namespace PayCompute.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewBag.employees = _employeeService.GetAllEmployeesForPayroll();
@@ -67,6 +80,7 @@ namespace PayCompute.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(PaymentRecordCreateViewModel model)
         {
             if (ModelState.IsValid)
@@ -117,6 +131,7 @@ namespace PayCompute.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Payslip(int id)
         {
             var paymentRecord = _payComputationService.GetById(id);

@@ -37,8 +37,9 @@ namespace PayCompute
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddDefaultUI()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -67,7 +68,10 @@ namespace PayCompute
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+                                IWebHostEnvironment env, 
+                                UserManager<IdentityUser> userManager, 
+                                RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -87,6 +91,8 @@ namespace PayCompute
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            DataSeedingInitializer.UserAndRoleSeedAsync(userManager,roleManager).Wait();
 
             app.UseEndpoints(endpoints =>
             {
